@@ -32,9 +32,10 @@
 */
 
         var stopSong = function(song) {
-            if (currentBuzzObject)
+            if (currentBuzzObject) {
                 currentBuzzObject.stop();
-            currentSong.playing = null;
+                currentSong.playing = null;
+            }
         };
         /**
  * @function setSong
@@ -49,7 +50,7 @@
                 preload: true
             });
 
-            Songplayer.currentSong = song;
+            SongPlayer.currentSong = song;
         };
 
         /**
@@ -63,79 +64,78 @@
                 song.playing = true;
             }
         };
-    }
 
-    /**
+        /**
  * @function play
  * @desc Play current or new song
  * @param {Object} song
  */
-    SongPlayer.play = function(song) {
-        song = song || SongPlayer.currentSong;
-        if (SongPlayer.currentSong !== song) {
-            setSong(song);
-            playSong(song);
-
-        } else if (SongPlayer.currentSong === song) {
-            if (currentBuzzObject.isPaused()) {
+        SongPlayer.play = function(song) {
+            song = song || SongPlayer.currentSong;
+            if (SongPlayer.currentSong !== song) {
+                setSong(song);
                 playSong(song);
-            }
-        }
-    };
 
-    /**
+            } else if (SongPlayer.currentSong === song) {
+                if (currentBuzzObject.isPaused()) {
+                    playSong(song);
+                }
+            }
+        };
+
+        /**
  * @function SongPlayer.pause
  * @desc Pause current song
  * @param {Object} song
  */
-    SongPlayer.pause = function(song) {
-        song = song || SongPlayer.currentSong;
-        currentBuzzObject.pause();
-        song.playing = false;
-    };
-    /**
+        SongPlayer.pause = function(song) {
+            song = song || SongPlayer.currentSong;
+            currentBuzzObject.pause();
+            song.playing = false;
+        };
+        /**
  * @function SongPlayer.previous
  * @desc Skips back to previous song on album
  */ 
-    SongPlayer.previous = function() {
-        /**
+        SongPlayer.previous = function() {
+            /**
 * @desc Access to the album
 * @type {Object}
 */
-        var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-        currentSongIndex--;
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex--;
 
-        if (currentSongIndex < 0) {
-            stopSong();
-        } else {
-            var song = currentAlbum.songs[currentSongIndex];
-            setSong(song);
-            playSong(song);
-        }
-    };
+            if (currentSongIndex < 0) {
+                stopSong();
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
 
-    /**
+        /**
 * @function SongPlayer.next
 * @desc Skips forward to next song in the album
 */
-    SongPlayer.next = function() {
-        var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-        currentSongIndex++;
+        SongPlayer.next = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
 
-        if (currentSongIndex > getSongIndex) {
-            stopSong();
+            if (currentSongIndex > getSongIndex) {
+                stopSong();
 
-        } else {
-            var song = currentAlbum.song[currentSongIndex];
-            setSong();
-            playSong();
-        }
-    };
+            } else {
+                var song = currentAlbum.song[currentSongIndex];
+                setSong();
+                playSong();
+            }
+        };
 
-    return SongPlayer;
-}
+        return SongPlayer;
+    }
 
- angular
- .module('blocJams')
-    .factory('SongPlayer', ['Fixtures', SongPlayer]);
+    angular
+        .module('blocJams')
+        .factory('SongPlayer', ['Fixtures', SongPlayer]);
 })();

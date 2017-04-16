@@ -19,14 +19,12 @@
             </a>
         </div>
         <div class="control-group currently-playing">
+            <!-- Remove this later but {{ }}may not be needed setting HTML attributes -->
             <h2 class="{{ album.albumData.songName }}"></h2>
             <h2 class="artist-song-mobile"></h2>
             <h3 class= "{{ artist.albumData.artist }}"></h3>
             <div class="seek-control">
-                <div class="seek-bar">
-                    <div class="fill"></div>
-                    <div class="thumb"></div>
-                </div>
+                <seek-bar></seek-bar>
                 <div class="current-time"></div>
                 <div class="total-time"></div>
             </div>
