@@ -1,4 +1,4 @@
-(function() {
+(function () {
     function seekBar($document) {
 
         var calculatePercent = function(seekBar, event) {
@@ -47,9 +47,7 @@
 
                     scope.thumbStyle = function() {
                         return {width: trackThumb()};
-                    }
-
-
+                    };
 
                     $document.bind('mouseup.thumb', function() {
                         $document.unbind('mousemove.thumb');
@@ -57,9 +55,10 @@
                     });
                 };
 
-            };
-
+            }
         }
+
+        };
 
         angular
             .module('blocJams')

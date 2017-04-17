@@ -3,7 +3,7 @@
     /**
  * @function songPlayer
  * @desc Plays or Pauses song depending on the conditions
- */ 
+ */
     function SongPlayer(Fixtures) {
         var SongPlayer = {};
 
@@ -34,7 +34,7 @@
         var stopSong = function(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
-                currentSong.playing = null;
+                SongPlayer.currentSong.playing = null;
             }
         };
         /**
@@ -75,7 +75,6 @@
             if (SongPlayer.currentSong !== song) {
                 setSong(song);
                 playSong(song);
-
             } else if (SongPlayer.currentSong === song) {
                 if (currentBuzzObject.isPaused()) {
                     playSong(song);
@@ -96,7 +95,7 @@
         /**
  * @function SongPlayer.previous
  * @desc Skips back to previous song on album
- */ 
+ */
         SongPlayer.previous = function() {
             /**
 * @desc Access to the album
@@ -122,13 +121,12 @@
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex++;
 
-            if (currentSongIndex > getSongIndex) {
+            if (currentSongIndex < getSongIndex) {
                 stopSong();
-
             } else {
-                var song = currentAlbum.song[currentSongIndex];
-                setSong();
-                playSong();
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
             }
         };
 
