@@ -31,9 +31,6 @@
                   scope.max = newValue;
                 });
 
-                attributes.
-
-
 
 
                 var percentString = function () {
