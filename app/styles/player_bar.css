@@ -55,7 +55,7 @@
 
 .player-bar .currently-playing .song-name,
 .player-bar .currently-playing .artist-name,
-,player-bar .currently-playing .artist-song-mobile {
+.player-bar .currently-playing .artist-song-mobile {
     text-align: center;
     font-size: 0.75rem;
     margin: 0;
